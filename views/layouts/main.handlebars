@@ -1,21 +1,107 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>{{title }}</title>
-  <link rel="stylesheet" href="/semanticui/semantic.min.css">
-  <link rel="stylesheet" href="/css/style.css">
-  {{#if ENV_DEVELOPMENT}}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{title }}</title>
+    <link rel="stylesheet" href="/semanticui/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    {{#if ENV_DEVELOPMENT}}
     <script src="http://localhost:35729/livereload.js"></script>
-  {{/if}}
-</head>
-<body>
+    {{/if}}
+  </head>
+  <body>
+
+    <!-- Following Menu -->
+    <div class="ui large top fixed hidden menu">
+      <div class="ui container">
+        <a class="active item">Home</a>
+        <a class="item">Blog</a>
+        <a class="item">About</a>
+        <div class="right menu">
+          <div class="item">
+            <a class="ui button">Log in</a>
+          </div>
+          <div class="item">
+            <a class="ui primary button">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="ui vertical inverted sidebar menu">
+      <a class="active item">Home</a>
+      <a class="item">Blog</a>
+      <a class="item">About</a>
+      <a class="item">Login</a>
+      <a class="item">Signup</a>
+    </div>
 
 
-  {{{body}}}
+    <!-- Page Contents -->
+    <div class="pusher">
+      <div class="ui inverted vertical masthead center aligned segment">
 
-<script   src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
-  <script src="/semanticui/semantic.min.js"></script>
+        <div class="ui container">
+          <div class="ui large secondary inverted pointing menu">
+            <a class="toc item">
+              <i class="sidebar icon"></i>
+            </a>
+            <a class="active item">Home</a>
+            <a class="item">Blog</a>
+            <a class="item">About</a>
+            <div class="right item">
+              <a class="ui inverted button">Log in</a>
+              <a class="ui inverted button">Sign Up</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui text container">
+          <h1 class="ui inverted header">
+            High Peak Solutions 
+          </h1>
+          <h2>Software Consultancy</h2>
+          <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+        </div>
+
+      </div>
+
+      {{{ body }}}
+
+
+      <div class="ui inverted vertical footer segment">
+        <div class="ui container">
+          <div class="ui stackable inverted divided equal height stackable grid">
+            <div class="three wide column">
+              <h4 class="ui inverted header">Links</h4>
+              <div class="ui inverted link list">
+                <a href="#" class="item">Home</a>
+                <a href="#" class="item">Blog</a>
+                <a href="#" class="item">About</a>
+              </div>
+            </div>
+            <div class="three wide column">
+              <h4 class="ui inverted header">Social</h4>
+              <div class="ui inverted link list">
+                <a href="#" class="item">Twitter</a>
+                <a href="#" class="item">Tool-Drip</a>
+                <a href="#" class="item">Email</a>
+              </div>
+            </div>
+            <div class="seven wide column">
+              <h4 class="ui inverted header">Footer Header</h4>
+              <p>Contact Me!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script   src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script src="/semanticui/semantic.min.js"></script>
+    <script src="/js/client.js"></script>
   </body>
 </html>
