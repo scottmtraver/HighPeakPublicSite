@@ -76,3 +76,12 @@
     font-size: 1.5em;
   }
 }
+.ui .homepage-tech {
+  max-width: 150px !important;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.ui .homepage-tech:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
