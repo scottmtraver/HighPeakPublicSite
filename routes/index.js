@@ -11,4 +11,8 @@ router.get('/About', function(req, res) {
   res.render('About', { title: 'High Peak Solutions - About' });
 });
 
+router.get('/Blog', function(req, res) {
+  res.render('Blog', { title: 'High Peak Solutions - Blog' });
+});
+
 module.exports = router;
