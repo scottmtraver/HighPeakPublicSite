@@ -15,4 +15,9 @@ router.get('/Blog', function(req, res) {
   res.render('Blog', { title: 'High Peak Solutions - Blog' });
 });
 
+router.get('/Blog/:seo', function(req, res) {
+  var seo = req.params.seo;
+  res.render('posts/' + seo, { title: 'High Peak Solutions - Blog' });
+});
+
 module.exports = router;
