@@ -18,5 +18,13 @@ $(document)
   $('.ui.sidebar')
   .sidebar('attach events', '.toc.item')
   ;
-
+var a = $('.ui.accordion').accordion({
+  onChange: function () {
+    $('.shape')
+  .shape('set next side', '#' + this.id + '-shape')
+  .shape('flip up');
+  }
+                                    
+});
+  
 });
