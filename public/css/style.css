@@ -88,3 +88,8 @@
 a.ui.segment.large.image.blog-image {
   width: auto;
 }
+@media (max-width: 736px) {
+  .no-mobile {
+    display: none !important;
+  }
+}
