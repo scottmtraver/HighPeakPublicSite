@@ -26,5 +26,12 @@ var a = $('.ui.accordion').accordion({
   }
                                     
 });
+
+$('.js-email-event').click(function () {
+  ga('send', 'event', 'Connection', 'email', 'Header/Footer/Home/About');
+});
+$('.js-download-event').click(function () {
+  ga('send', 'event', 'Download', 'blog', 'downloaded blog post');
+});
   
 });

@@ -10,15 +10,15 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'High Peak Solutions - Home' });
 });
 
-router.get('/About', function(req, res) {
-  res.render('About', { title: 'High Peak Solutions - About' });
+router.get('/about', function(req, res) {
+  res.render('about', { title: 'High Peak Solutions - About' });
 });
 
-router.get('/Blog', function(req, res) {
-  res.render('Blog', { title: 'High Peak Solutions - Blog' });
+router.get('/blog', function(req, res) {
+  res.render('blog', { title: 'High Peak Solutions - Blog' });
 });
 
-router.get('/Blog/:seo', function(req, res) {
+router.get('/blog/:seo', function(req, res) {
   var seo = req.params.seo;
   res.render('posts/' + seo, { title: 'High Peak Solutions - Blog' });
 });
