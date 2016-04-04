@@ -31,7 +31,7 @@ $('.js-email-event').click(function () {
   ga('send', 'event', 'Connection', 'email', 'Header/Footer/Home/About');
 });
 $('.js-download-event').click(function () {
-  console.log("hre");
+  ga('send', 'event', 'Download', 'blog-post', 'post');
 });
   
 });
