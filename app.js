@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
 
 var routes = require('./routes/index');
+var forceDomain = require('forcedomain');
 
 var app = express();
 
@@ -43,6 +44,10 @@ app.get('/robots.txt', function (req, res) {
   res.type('text/plain');
   res.render('public/humans.txt', { title: 'Humans' });
 });
+
+app.use(forceDomain({
+  hostname: 'www.highpeaksolutions.com'
+}));
 
 app.use('/', routes);
 
