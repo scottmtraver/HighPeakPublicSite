@@ -7,20 +7,20 @@ var fs = require('fs');
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'High Peak Solutions - Home' });
+  res.render('index', { title: 'Home' });
 });
 
 router.get('/about', function(req, res) {
-  res.render('about', { title: 'High Peak Solutions - About' });
+  res.render('about', { title: 'About' });
 });
 
 router.get('/blog', function(req, res) {
-  res.render('blog', { title: 'High Peak Solutions - Blog' });
+  res.render('blog', { title: 'Blog' });
 });
 
 router.get('/blog/:seo', function(req, res) {
   var seo = req.params.seo;
-  res.render('posts/' + seo, { title: 'High Peak Solutions - Blog' });
+  res.render('posts/' + seo, { title: 'Blog' });
 });
 
 //downloads

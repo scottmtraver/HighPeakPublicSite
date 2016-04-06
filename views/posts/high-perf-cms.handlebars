@@ -10,14 +10,14 @@
           <a>Performance, Architecture, Tools</a>
         </div>
         <div class="description">
-          There are countless advantages to having a high performance website including lower bounce rates, higher conversions and happier users. But like with every business decision there must be a cost-benefit analysis done when choosing projects; delivering high performance may or may not always be the highest priority. <strong>Fortunately</strong> a rising tide lifts all boats; and the rising tide for performance has been open source projects and services making the cost for making high speed mobile and responsive sites with proper architecture is very minimal.
+          There are countless advantages to having a high performance website including lower bounce rates, higher conversions and happier users. But like with every business decision there must be a cost-benefit analysis done when choosing projects; delivering high performance may or may not always be the highest priority. <strong>Fortunately</strong> a rising tide lifts all boats; and the rising tide for performance has been open source projects and services making the cost for making high speed mobile and responsive sites with proper architecture very minimal.
         </div>
         <div class="description">
           To choose technologies based on performance and cost, I have narrowed the scope of this example to a generic Content Management System (CMS) for example a simple blog or e- commerce platform. On the <a href="/blog/website-vs-webapp" target="_blank">spectrum from interactive to informational</a>, there are two components - the admin side making changes to the content and the high visit user side only consuming the resulting content.
           Architecture is simplified when we only have a single direction data (content) moves; from admin to user. The main advantages of this design is segmenting performance needs (admin and user) and allowing us to leverage free technologies and services by keeping the user loop as small as possible and avoiding load on our systems which further reduces costs.
         </div>
         <a href="/img/posts/highspeed-architecture-flow.png" target="_blank" class="ui segment large image blog-image">
-          <img src="/img/posts/highspeed-architecture-flow.png">
+          <img src="/img/posts/highspeed-architecture-flow.png" title="High Performance Architecture Stack" alt="High Performance Architecture Stack">
         </a>
         <div class="description">
           The stack is made up of two main components, the management Single Page Application (SPA) and the client facing static site. Different technologies can be used for both components because the difference in performance concerns and level of interactivity. The admin section can use a ‘heavier’ app framework because there is need for a smooth experience of managing, uploading, validating and changing content; and there is an expectation of a slower initial load or login process. Frameworks like these lend themselves to rapid prototyping and development and include lots of features such as built in security, resource connection management and validation. Managing content should be done through an API so that the system is modular; and so other applications or services can be used to perform the management if automation or integrations are needed from external sources (for example using data feeds to update content).
@@ -32,7 +32,7 @@
           This caching strategy greatly reduces the load on infrastructure and moves the content closer to the users for a faster, more reliable experience. By doing this you can run multiple projects or sites on very lightweight infrastructure and at a much lower cost than when using a traditional self hosted server solution. Building sites in this way can increase the availability of your site or project by making it flexible, responsive and fast while keeping costs at a minimum.
         </div>
         <a href="/img/posts/highspeed-architecture-tech.png" target="_blank" class="ui segment large image blog-image">
-          <img src="/img/posts/highspeed-architecture-tech.png">
+          <img src="/img/posts/highspeed-architecture-tech.png" title="High Performance Technologies" alt="High Performance Technologies">
         </a>
         <div class="description">
           Technologies I use for a low cost high speed site - os = open source, ft = free tier, f = free
@@ -42,7 +42,7 @@
               <a href="http://emberjs.com/" target="_blank">EmberJS</a> (f, os) - An advanced client side framework for handling interactions, relationships, validation and easy prototyping. Integrates well with JSON API services. • JSON API (f) - A growing web standard for object and response data formatting.
             </div>
             <div class="item">
-              <a href="https://nodejs.org/en/" target="_blank">NodeJS</a> (f, os) - Javascript is quickly becoming a server side language running in nodejs. I prefer it because it make client and sever-side data manipulation consistent.
+              <a href="https://nodejs.org/en/" target="_blank">NodeJS</a> (f, os) - Javascript is quickly becoming a server side language running in NodeJS. I prefer it because it make client and sever-side data manipulation consistent.
             </div>
             <div class="item">
           <a href="https://www.mongodb.org/" target="_blank">MongoDB</a> (f, os) - Document database store lends itself to easily changing data format, objects and relationships, and has a language and format that is easily used with javascript.

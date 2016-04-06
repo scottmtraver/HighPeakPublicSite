@@ -1,6 +1,6 @@
 # High Peak Solutions - Public Site
 
-High Peak Solutions - Software Consultancy is a software consultancy owned and operated by Scott Traver
+High Peak Solutions - Software Consultant is a software consultancy owned and operated by Scott Traver
 
 This is the public company site source
 
