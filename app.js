@@ -34,6 +34,16 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
+
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.render('public/humans.txt', { title: 'Humans' });
+});
+
 app.use('/', routes);
 
 /// catch 404 and forward to error handler

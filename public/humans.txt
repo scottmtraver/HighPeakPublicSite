@@ -1,0 +1,33 @@
+/* TEAM */
+
+                            
+Your title: Scott Traver
+
+                            
+Site: scott@highpeaksolutions.com 
+
+                            
+Twitter: ScottTraver, HighPeakConsult
+
+                            
+Location: Salt Lake City, UT, United States of America
+
+/* THANKS */
+
+							
+Name: Kevin Traver, Dave Traver, nancy Traver
+
+                            
+/* SITE */
+
+                            
+Last update: 2016/04/06 
+
+                            
+Standards: HTML5, CSS3
+
+                            
+Components: Modernizr, jQuery
+
+                            
+Software: Vim, Mac
