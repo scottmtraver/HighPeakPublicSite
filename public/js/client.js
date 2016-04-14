@@ -33,5 +33,13 @@ $('.js-email-event').click(function () {
 $('.js-download-event').click(function () {
   ga('send', 'event', 'Download', 'blog-post', 'post');
 });
+
+$('.ui.sticky')
+  .sticky({
+    offset       : 200,
+    bottomOffset : 0,
+    context: '#sticker'
+  });
+  $('#facebookShareUrl').attr('href', ($('#facebookShareUrl').attr('href') + window.location.href));
   
 });

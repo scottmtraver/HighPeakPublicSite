@@ -96,3 +96,7 @@ a.ui.segment.large.image.blog-image {
 .blog-emphasis {
   font-size: 1.25em;
 }
+.contact-list a,
+.contact-list div {
+  margin-top: 5px !important;
+}
