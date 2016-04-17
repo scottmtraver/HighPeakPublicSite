@@ -76,6 +76,9 @@
     font-size: 1.5em;
   }
 }
+.home-list li {
+  font-size: 1.25em;
+}
 .ui .homepage-tech {
   max-width: 150px !important;
   -webkit-filter: grayscale(100%);
@@ -99,4 +102,12 @@ a.ui.segment.large.image.blog-image {
 .contact-list a,
 .contact-list div {
   margin-top: 5px !important;
+}
+.callout {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.2em;
+  margin-top: 10px;
+  font-family: serif;
 }
