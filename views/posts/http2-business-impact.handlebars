@@ -1,0 +1,77 @@
+<h3 class="ui center aligned header">&nbsp;</h3>
+
+<div class="ui container text">
+  <div class="ui relaxed divided items">
+    <div class="item">
+      <div class="content">
+        <a class="header">HTTP2 - AMA</a>
+        <div class="meta">
+          <a>May 2, 2016</a>
+          <a>Mobile Development, Business, WebPerformance</a>
+        </div>
+        <div class="description">
+          Last week, Catchpoint hosted and <a href="http://pages.catchpoint.com/HTTP2-AMA-Registration.html?mkt_tok=eyJpIjoiT0dSa056QTJNalpqWkRJeiIsInQiOiI4ZStjSTlkOWtZV3psbVlxSDRZQkVPaGVtVkkrQ2Y3UWg5czAzXC9qRkZDOFZhbGwwdUptXC90YW04RVwvdFhQcjZpY1VOMDlPelB2NGtzXC8yeWJnOHN2RDlIb0RaK1ZZbXRsa3VjbTRabVNUeHc9In0%3D" target="_blank">Ask Me Anything webinar about HTTP2</a> which I attended to learn more about the cutting edge of web performance and how this will impact my own web development practices and clients sites.
+        </div>
+        <div class="description">
+          HTTP 2 (sometimes abbreviated as H2) will become a new standard protocol for transferring data throughout the internet (as opposed to standard HTTP, which I will refer to as H1). It has been a long time coming and many teams, individuals and communities have contributed to creating it on the backbone of technologies that alleviates many of the problems that exist in H1. Unfortunately because of the lifespan of many technologies on the internet, business and technology practices online have created and formed some ‘hacks’ that work around the issues in H1 and in H2 these ‘issues’ go away but as a result some of them undo or work against the advantages of the current H1 best practices. To understand the business impact of H2 on your business or site, one must first understand the changes, adoption and limitations of H2.
+        </div>
+        <br/>
+        <h2>Adoption - When will it happen?</h2>
+        <div class="description">
+The first question everyone asks with new technology is when will this all happen? Congratulations! It’s happening now. With many of the major Content Delivery Networks (CDN) already adopting it on their servers, 70% of modern web browsing is done on technology which supports H2. H2 is also cleverly designed in a way where a fallback to H1 is easily achievable so there is no noticeable difference to users if a site is not up to speed (apart from the advantages of H2). Although adoption is high, the history is short and the technology young with many providers only enabling full support late last year or spring 2016.
+        </div>
+        <div class="description">
+          Right now you can take advantage of H2 if you use any of these providers and may get some advantages by default. <a href="https://www.cloudflare.com/http2/what-is-http2/" target="_blank">Cloud Flare</a> (the CDN I use) has full support and fallback to H1; you get the advantages by simply using their service (a performance advantage in itself), and <a href="https://http2.akamai.com/" target="_blank">Akamai</a> and <a href="https://www.maxcdn.com/blog/cdn-http2/" target="_blank">MaxCND</a> are quickly following suit.
+        </div>
+        <br/>
+        <h2>So what is HTTP2?</h2>
+        <div class="description">
+          Primarily H2 is a new protocol for transferring data on the internet. For businesses and sites this is how content (the site itself, loaded data, etc) is sent to the client even faster. The way H1 was designed has limitations such as: it can be insecure, allows only 1 thing at a time to be sent on a connection, and is built on a request response paradigm. H2 solves many of these problems with new design and technological advances on both the client and server side including: connection multiplexing (the ability to send many things on a single connection), built in security (TLS) and Server Push (the ability for a server to intelligently send resources before the client requests them). For technical and security reasons these components (besides TLS) are opt in by the client so you cannot crash a client from a server (ex by pushing malicious files…).
+        </div>
+        <br/>
+        <h2>What does this mean for my site?</h2>
+        <div class="description">
+          These changes are living and changing as H2 is becoming adopted. Because there are changes on both the server and client side, there are some site design and configuration considerations to begin thinking about. The three biggest changes (mentioned above - security, multiplexing, and server push) each have their own changes for performance best practices. For starter, the addition of built in security is important because… security is important! With the growing security concerns, many search engines will (and have already) added security as an element to their page rank. This means webpages and sites without security will show up lower on search results pages (this may drastically hurt traffic as a result). If your site does not use HTTPS there are many free and simple ways to configure this ahead of the SEO changes (such as letsencrypt or using a CDN which provides a SSL certificate).
+        </div>
+        <div class="description">
+          Multiplexing is something that has been missing from H1 and may be the biggest design change and biggest advantage needed for websites. To combat the lack of multiplexing the best practices (of H1) are to do something called domain sharding; this is the practice of serving your assets (images, stylesheets, scripts) from many different domains (urls). The browser would then open many connections (usually limited to 6 or 8) to download the assets in parallel. This combination of parallel download and limited connection meant sites with lots of assets might use 3 or 4 domains so 20 connections could be made. The cost of this on H1 is that each of these connections has overhead (takes time to connect). By only opening 1 connection (the H2 way) a client can download all the assets from a single domain requiring only 1 domain lookup (DNS) and 1 security negotiation greatly reducing connection (and therefore overall) transfer time.
+        </div>
+        <a href="https://www.cloudflare.com/http2/what-is-http2/" target="_blank" class="ui segment large image blog-image">
+          <img src="/img/posts/http2-multiplexing.png" title="Example of inApp and mobile browsers" alt="Example of inApp and mobile browsers">
+        </a>
+        <div class="description">
+As H2 shifts to this multiplexing, site developers may consolidate their server configuration for assets and gain these performance benefits. The tradeoff - this is a changed way of thinking and has massive implications on 3rd party tooling. 3rd party scripts are usually downloaded from a different (3rd party) domain so they are always up to date. The advantages of H2 are only gained for the client when all parties involved are using H2. In addition to reducing unnecessary 3rd party scripts, website designers must now more highly consider the implications of each 3rd party tool and their adoption of new technologies so that the design practices can mix and match instead of compete with each other.
+        </div>
+        <br/>
+        <h2>Limitations of HTTP2</h2>
+        <div class="description">
+Server Push is a way servers can intelligently deliver resources without the request response paradigm and save many round trips and requests from the client to the server. Although this can be a much more effective way of delivering content, it has it’s limitations and competes with some existing workarounds and performance technologies. As an opt in technology (for security reasons), the client also has some control over the amount of performance benefit this will give. Server push is not fully developed and the real world applications are not well understood especially as it relates to caching. Caching the a way of already downloaded resources to be used directly from the client without making a network request - but taking away the request response pattern, a server with server pushed enabled may not know the client has cached a resources and may end up sending extra data or files (and by sending these files delay the sending of needed resources). This is an area where the technology needs tuning, which will come as H2 adoption continues and the real world applications give us the needed case studies, allowing server push to be used in the most performant way.
+        </div>
+        <div class="description">
+          H2 is an amazing leap forward in technology, thinking and internet infrastructure. Although it’s adoption is increasing, H1 will be around for a long time as there are many servers and much hardware that cannot be upgraded (or has H1 embedded). In 2016 this means we are only on the very leading edge of these advancements and fallbacks are extremely important as the sphere of the web grows in size and scope (especially in rural areas). H2 is a technology as well as a way of thinking and design which is increasingly important as the world of performance continues to evolve. There are no excuses for taking advantage of H2 today and staying ahead of the curve (and competition) to deliver the most performant accessible web experiences.
+        </div>
+        <br/>
+        <div class="description">
+          Special Thanks to Ilya Grigorik, Tim Kadlec, Suzanne Aldrich, Andrew Smirnov and Catchpoint for the Ask Me Anything Webinar!
+        </div>
+        <hr/>
+        <div class="extra">
+          <span>Written By Scott Traver</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call To Action -->
+<div class="ui vertical stripe segment">
+  <div class="ui text container">
+    <div class="ui center aligned basic segment">
+      <p>Is your site providing the best and most accessible experience using the latest technologies?</p>
+      <div class="ui green labeled icon button">
+        <a class="js-email-event" href="mailto:scott@highpeaksolutions.com?Subject=HTTP2" style="color:white;">Contact Me</a>
+        <i class="mail outline icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
