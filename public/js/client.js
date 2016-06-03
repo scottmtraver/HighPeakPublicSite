@@ -1,6 +1,7 @@
 $(document)
 .ready(function() {
 
+  return;//TODO remove!
   // fix menu when passed
   $('.masthead')
   .visibility({

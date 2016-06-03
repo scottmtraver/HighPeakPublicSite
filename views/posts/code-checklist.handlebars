@@ -1,0 +1,118 @@
+<h3 class="ui center aligned header">&nbsp;</h3>
+
+<div class="ui container text">
+  <div class="ui relaxed divided items">
+    <div class="item">
+      <div class="content">
+        <a class="header">Line by Line</a>
+        <div class="meta">
+          <a>June 2, 2016</a>
+          <a>Philosophy, DevOps, Best Practices</a>
+        </div>
+        <div class="description">
+          Often as developers we forget our responsibility to the code we write.<br/><br/>
+          Before a pilot of an 747 takes off, before a bridge is deemed architecturally sound, before a surgery begins, checklists are used to idiot proof complex processes and to ensure consistency and quality. In my experience after reading about and studying code and coding practices I have come up with a checklist inspired by <a href="http://www.amazon.com/Checklist-Manifesto-How-Things-Right/dp/0312430000" target="_blank">Checklist Manifesto</a> in an effort to make the complex manageable.
+This is a personal checklist that I review and update monthly (if not more often). It is a living breathing understanding of my thought process as I still learn and grow as a coder. I wish to cultivate a workplace where my coworkers and I are held accountable and understand the impact of our code on the project as a whole. I also use it as a gentle reminder not to make the same mistakes twice, which is often my own downfall as I rush to meet deadlines or requirements.
+        </div>
+        <div class="description">
+          Some of the elements are just catch alls for my own personal aid, used to drive home and correct bad habits and mistakes that I repeatedly make. Every element in the checklist is something I find important in creating understandable, purposeful, maintainable code your fellow developers (and future self) will appreciate. I have included the checklist here before discussing the reason and explanation of each line item.
+        </div>
+        <br/>
+        <h2>Code Complete Checklist</h2>
+        <div class="description" id="checklist">
+            <div class="ui relaxed list">
+              <div class="ui item" v-for="group in groups">
+                <div class="content"> 
+                  <label>\{{ group.name }}</label>
+                  <div class="ui item" v-for="item in group.items">
+                    <div class="content">
+                      <div class="ui checkbox">
+                        <input type="checkbox" name="example" v-on:change="updateProgress" v-model="item.checked">
+                        <label>\{{ item.text }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+              <div class="ui indicating progress" data-value="0" data-total="\{{ total }}" id="progress">
+                <div class="bar"></div>
+                <div class="label">Progress</div>
+              </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <hr/>
+        <div class="description">
+          This is a code checklist not a feature checklist. Where a feature (or module) checklist may include macro things like performant, secure,and functional, this checklist is for code quality at the micro level with concerns such as maintainability, readability, and scalability. This is also a technology / language agnostic list and pulls from my experience writing everything from javascript (framework and vanilla) to database queries - the same principles apply although the methods of testing may be different and some checks may not apply or may be covered in the language specification.
+        </div>
+        <h3>Passes</h3>
+        <div class="description">
+          Passes is a group of tasks that only take a minute but can save hours of headaches and heartache. If your coding practices <a href="http://blog.cleancoder.com/uncle-bob/2016/03/19/GivingUpOnTDD.html" target="_blank">follow TDD</a> and has sufficient dev ops, many of these tasks should be built into the efficiency of your team already - even then I have caught myself skipping steps in an effort to make the smallest of changes or hotfixes (to my demise). This can spell death by 1000 papercuts. Passing these checklist items is more about externalizing a discipline than any individual practice.
+        </div>
+        <div class="description">
+          <strong>Passes linters</strong> - Good dev ops practices requires clean code and linters are an amazing set of tools to keep everyone standardized which makes a coding team more efficient at sharing and maintaining code. I won’t argue what/how to set up your standards but cannot stress enough the importance of having them. You can always customize your IDE for your own personal preference but the code itself must be sharable or else the teamwork falls apart and the benefits are lost. There are no excuses for syntax errors anyomre.
+        </div>
+        <div class="description">
+          <strong>Passes tests</strong> - Another amazing set of tools (although a complex and heated topic), tests should be an important part of the development process. Whether TDD, QA, unit, integration, or end to end (created and maintained by devs or another team) tests can keep the code production ready (at a minimum) and provide amazing discussion points for the deployment, stability, maintainability, and quality of code. Tests should also include benchmarks such as performance budgets (something I’m extremely passionate about), security tests, and external code audits if required.
+        </div>
+        <div class="description">
+          <strong>Passes review</strong> - Teamwork is crucial. Seldom does a developer find himself working in isolation. Working in such a vacuum can be disastrous as it incentivizes long paths sometimes building the wrong thing (feature) and avoids the wealth of knowledge, opinion and experience that technology is constantly building upon. Even in personal projects there can be a communal aspect (and review framework via the open source community where appropriate). I keep this item on my checklist so for even the smallest fixes I can ensure that there is awareness of what I am doing and how my changes may affect the project as a whole - even as an internalized silent thinking point, this exercises judgement and keeps one more accountable for one's code. <a href="http://www.rubberduckdebugging.com/" target="_blank">If all else fails: Rubber Duck Debugging.</a>
+        </div>
+
+        <div class="description">
+          <strong>Names clear and standardized</strong> - Checklist item for readability, making sure the code is clear (or has necessary comments) can save hours of headache in the future (even for yourself). Code should be self explanatory with a single readthrough is a good rule of thumb. This also seeks to capture that if code size for a particular method or function cannot fit on a page it should be modularized more (as another generalized rule). Consistent naming across the project allows others to easily relate components and search the project (more below) for use cases.
+        </div>
+        <div class="description">
+          <strong>Does not create duplicate code</strong> - This is a quick check against the naming conventions and functionality to make sure that the incoming code is not a duplicate of anything. Don’t reinvent the wheel (but fix broken wheels where necessary). Easily scan the project via search for similar names (I use <a href="https://github.com/ggreer/the_silver_searcher" target="_blank">silver searcher</a>) and ask around for similar functionality. This is a simple reminder to be intimate with your project and codebase and step back for a higher level view, abstracting upwards common functionality and using configuration and convention over customization. Duplicate code kills maintainability.
+        </div>
+        <h3>Defensively Coded</h3>
+        <div class="description">
+This sublist is a simple mental exercise prompting thought about the impact of this code. Your code should only interact with the larger project or other team members code with their awareness. Your code should also be extensible and usable by future teams or projects without bothering you for implementation details. This is not restrictive but defensive. Scope should be specific to avoid unwanted side effects. All inputs and outputs must be considered (so important there is another line item below). Just thinking about this will often realize edge cases and situations previously unconsidered.
+        </div>
+        <h3>NO!</h3>
+        <div class="description">
+          These items started as personal reminders that began from work I did where we would be using test records with a specific ID and I would accidently leave the ID in a select statement. I have even ended up launching some of these to production and users created objects but when viewing them got our test results by my mistake. These errors were particularly hard to debug because the program did ‘work’ (act as expected, logically) but served the wrong data. I have expanded this list to include a few other common errors I have made many times to make my code commits idiot proof and more secure; unnecessary static numbers, exposed debugging statements and infinite loops can be exploited (internally and externally) as well as generally crash programs.
+        </div>
+        <h3>Code Paths</h3>
+        <div class="description">
+          <strong>All code paths discussed</strong> - this is a general rule in which a quick name search (if naming is concise and clear from above!) will show you where your features is used. This isn’t meant to be exhaustive just to raise awareness. If there are any name conflicts or areas of code your feature is used you didn’t know about, you can now discuss them with other team members to resolve conflicts before they go to production or become solidified as bad design. This is strictly programmatic and looking at the current codebase (as opposed to the ‘reusable’ section looking at the future). This is to double check the current hooks into the program and make sure there has been a focus on the currently used and known inputs and outputs of this feature.
+        </div>
+        <div class="description">
+          <strong>Nulls accounted for</strong> - is so important it is in here twice! Taking another look over your code for defaults and nulls shouldn’t take long if you have proper tests in place but it will save you from unchecked errors (especially in javascript where error reporting can be vague or non-existent). Also a good time to stop and make sure proper error handling is in place for unexpected inputs.
+        </div>
+        <div class="description">
+          <strong>Reusable</strong> - Related to all code paths discussed this is an important macro discussion about the future of this feature. Again promoting teamwork and discussion it is important not only to review the code but review the longevity of the code. By hitting this checklist point you can avoid writing useless features and duct tape fixes or bandaids which may expedite the business process now but soon become very very destructive habits and is a short sighted unsustainable model for growth.
+        </div>
+        <h3>Source Control</h3>
+        <div class="description">
+          Working with a team I have learned the importance of good source control. Source control must be kept up to date properly by building habits like good git commit messages and user stories. By being as clear and explicit as possible the extra characters typed ensures efficiency of fixes, defense of reasons and makes for an extremely streamlined team with high awareness, which in turn manages the complexity of large systems. This is as important as the comments on code reviews. I won’t go into my opinion of rebase or keeping history strictly historical but am trying to stress the importance of clarity. <a href="http://chris.beams.io/posts/git-commit/" target="_blank">How to write a commit message.</a>
+        </div>
+        <h3>Line by Line</h3>
+        <div class="description">
+          Finally every developer must take responsibility for the highest quality code. Every line is a child that must be fed, nurtured, fixed, re-fixed, updated, placed in the proper place. Often we forget that each line is a responsibility. No code is the best code of all. Code is often the enemy but doesn’t have to be if it is written responsibility for the present and the future solving a problem when all other options are exhausted. <a href="https://blog.codinghorror.com/the-best-code-is-no-code-at-all/" target="_blank">The best code is no code at all.</a>
+        </div>
+        <div class="extra">
+          <span>Written By Scott Traver</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call To Action -->
+<div class="ui vertical stripe segment">
+  <div class="ui text container">
+    <div class="ui center aligned basic segment">
+      <p>Does your checklist have something different?</p>
+      <div class="ui green labeled icon button">
+        <a class="js-email-event" href="mailto:scott@highpeaksolutions.com?Subject=Checklist" style="color:white;">Discuss your checklist!</a>
+        <i class="mail outline icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
