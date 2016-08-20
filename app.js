@@ -45,10 +45,6 @@ app.get('/robots.txt', function (req, res) {
   res.render('public/humans.txt', { title: 'Humans' });
 });
 
-app.use(forceDomain({
-  hostname: 'www.highpeaksolutions.com'
-}));
-
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
