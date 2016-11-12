@@ -1,0 +1,63 @@
+<h3 class="ui center aligned header">&nbsp;</h3>
+
+<div class="ui container text">
+  <div class="ui relaxed divided items">
+    <div class="item">
+      <div class="content">
+        <a class="header">Living Data</a>
+        <div class="meta">
+          <a>Nov 12, 2016</a>
+          <a>Programming, DevOps</a>
+        </div>
+        <div class="description">
+          Recently I have been working on our platform reliability. This has included a lot of planning for unexpected system failures. Eliminating weak links, planning for redundancy, load balancing are all part of this development at scale. Often though you need to run services through a single point to maintain data integrity or consistency among many instances of a program. We directly encountered this in architecting our system and I would like to share our solution with you today.
+        </div>
+        <a href="https://www.igvita.com/2016/05/20/building-fast-and-resilient-web-applications/" target="_blank" class="ui segment large image blog-image">
+          <img src="https://mexicoinstitute.files.wordpress.com/2013/08/people-network.jpg" title="Network of People" alt="Network of People">
+        </a>
+        <div class="description">
+          <strong>The situation - </strong> Part of our platform involves telephony communications. We have a chrome plugin and we are allowing users the ability to make a call through our comms system (a separately managed team’s set of infrastructure). Due to the complications of telephony they have given us a RESTful interface to their system for connecting a call by calling (your) one phone then the other. They also provide utilities for checking status of a number such as a call is currently ongoing or the line is free.
+        </div>
+        <div class="description">
+          We (my team) have created a wrapper service to provide additional functionality for states the comms platform does not currently support. The prime example is they do not have a state for when the initial leg of the call has not been established. This happens when the call has been initiated but not yet connected. During this time we would like to give user feedback that the call initiation is in progress.
+        </div>
+        <div class="description">
+          The complication with this setup is we load balance our service (there are many instances - it is a websocket service) and any single user can have many instances of the client (many tabs open etc…). A connection to our service is not guaranteed to be a single instance. To make the status data consistent, we put a ‘truthy’ caching (redis) layer in front of all our wrapper services with a simple key value pair (userID and status). When a call is initiated, we insert a record and when the call is connected we remove the record (the call status is Either the cached record Or flows through to the comms stack - at which point any instance would return the appropriate and correct status).
+        </div>
+        <div class="description">
+          This works when all systems are responding as expected; but we are planning for failure. The main exercise is solving for the case when a status record is inserted and subsequently the server goes down (for any reason, crash, timeout, even a deployment!). Consider a deployment (self initiated reason all that particular instance of our wrapper service drops all of it’s connections). None of the other instances know what data was created or what data is corrupt (will not be removed). These hanging status cause many problems because without integrity we cannot clear them safely, and cannot trust their information.
+        </div>
+        <div class="description">
+          <strong>Solution - </strong> To solve this we created a system of living data. In between the insertion and deletion of the temporary status record, we add a timestamp. This timestamp is the last time data was updated from the instance that inserted the data (single responsibility). Any request for status will look at the last timestamp and if it is older than a threshold, the data is not ‘living’ and cannot be trusted (and should be removed). The wrapper service should update the timestamp often (below the threshold limit) to keep the data ‘alive’. This lessens the dependence on an external service for health checking the data (another potential single point of failure). It is also highly performant (thresholds can be very low if using a memory cache) yet configurable to varying or even dynamic load if need be.
+        </div>
+        <a href="https://www.oreilly.com/ideas/dont-gamble-when-it-comes-to-reliability?imm_mid=0e8ff0&cmp=em-webops-na-na-newsltr_20160930" target="_blank" class="ui segment large image blog-image">
+          <img src="/img/posts/cache-alive.png" title="Cache Alive Diagram" alt="Cache Alive Diagram">
+        </a>
+        <div class="description">
+          This strategy of creating a set of living data is a simple way to keep services modular when they need to funnel data through a single source of truth. It can be easily scaled as long as the requests are properly routed to the proper data (shard the cache into multiple locales). It also provides a low cost pattern for caching short lived data while being very fault tolerant and load balanced.
+        </div>
+        <br/>
+        <hr/>
+        <div class="extra">
+          <span>Written By Scott Traver</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call To Action -->
+<div class="ui vertical stripe segment">
+  <div class="ui text container">
+    <div class="ui center aligned basic segment">
+      <p>Got a Data Driven project?</p>
+      <div class="ui green labeled icon button">
+        <a class="js-email-event" href="mailto:scott@highpeaksolutions.com?Subject=Project" style="color:white;">Contact Me</a>
+        <i class="mail outline icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
