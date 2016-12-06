@@ -1,0 +1,70 @@
+<h3 class="ui center aligned header">&nbsp;</h3>
+
+<div class="ui container text">
+  <div class="ui relaxed divided items">
+    <div class="item">
+      <div class="content">
+        <a class="header">Living Data</a>
+        <div class="meta">
+          <a>Dec 6, 2016</a>
+          <a>Programming, Systems</a>
+        </div>
+        <div class="description">
+          Deep in the programming discipline, data integrity is often a hot topic of cluster database management system design; but it should often be thought of at a systems level. Recently I worked on a project in which we were required to post data to an external service (another team within our organization) but the data to send was being collected asynchronously. This gave us two main design options to keep the data up to date and provide the best user experience (data quickly available):
+        </div>
+        <div class="description">
+          <ul>
+            <li>
+Send the data when we receive it and send additional data as we get it (requires the third party to accept data updates (patch requests in our case))
+            </li>
+            <li>
+Aggregate the data until we have everything required then send it (an atomic post which will be delayed until all data is available)
+            </li>
+          </ul>
+        </div>
+        <div class="description">
+We had some business restrictions and the external service did not allow updating data (forcing us into option 2). Also because the aggregation of data was of unknown duration (we don’t know the order or timing of the data being fetched asynchronously) we needed a system that planned for failures we anticipated. One of the primary failures we experience is  self imposed: we deploy often and deployment kills any threads so in-memory aggregation or long polling was not an option as a deployment would cause data loss and any running data transmissions (or waiting state) to never complete.         
+        </div>
+        <div class="description">
+          The system we created leveraged a queue of data to be sent at the first available convenience. This queue also gave us an audit trail of data that was sent (or unsent) to help us in debugging and performance analysis.
+        </div>
+        <div class="description">
+          On one side, services that had data to send created an entry into the table (queue) with a specific typeID and the data it had available. Any other services would check to see if there was an existing record with the specific typeID (easily done with couchbase) and if so, would merge its data with the existing data. Otherwise this instance of the service would create the record. This process makes the data flow order agnostic (doesn’t matter which half of the needed data arrives first).
+        </div>
+        <div class="description">
+          On the opposite side, a separate runner service queries the queue (round robin fashion?) and if any record has all the relevant data and is ready to be synced can be sent to the external service and the record status can be updated (or moved to a historical table or log…). If a record was not ready, a timestamp is updated on the record to keep track of long pending records or unsynced data. To keep this service runner type agnostic, we designed our records to include everything required for sending the data forward including the post url and a ready status. By including the post data and post url, one can use as many service runners as needed to decrease the time between data is ready to sync and a runner actually sends it. Also the service runner is now a segmented system that can provide its own logging and feedback on failures.
+        </div>
+        <div class="description">
+        </div>
+        <img src="/img/posts/SyncSend.jpg" title="Multi Part Sync Architecture" alt="Multi Part Sync Architecture">
+        <div class="description">
+          This system design acts as a buffer between internal and external systems, matching data requirements through an auditable interface. By dividing up the responsibilities like this, we were able to reduce dependency and allow for graceful failure (and deployment) of systems and subsystems with less data loss and the best service performance. We are also able to throttle request throughput by adding more generic task runners.
+        </div>
+        <div class="description">
+          The main takeaways I had from the system discussions that lead to this design were planning for failure and separation of concerns. Never be afraid of making your system too generic because it allows you to use it in new and inventive ways. By keeping transactions in data instead of thread (or in memory) actions we were able to build a fault tolerant and performant system meeting internal and external requirements.
+        </div>
+        <br/>
+        <hr/>
+        <div class="extra">
+          <span>Written By Scott Traver</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call To Action -->
+<div class="ui vertical stripe segment">
+  <div class="ui text container">
+    <div class="ui center aligned basic segment">
+      <p>Are your systems fault tolerant?</p>
+      <div class="ui green labeled icon button">
+        <a class="js-email-event" href="mailto:scott@highpeaksolutions.com?Subject=Project" style="color:white;">Contact Me</a>
+        <i class="mail outline icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
