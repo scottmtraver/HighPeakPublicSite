@@ -1,5 +1,3 @@
-
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -34,16 +32,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 86400000 }));
-
-app.get('/robots.txt', function (req, res) {
-    res.type('text/plain');
-    res.send("User-agent: *\nDisallow: /");
-});
-
-app.get('/robots.txt', function (req, res) {
-  res.type('text/plain');
-  res.render('public/humans.txt', { title: 'Humans' });
-});
 
 app.use('/', routes);
 
