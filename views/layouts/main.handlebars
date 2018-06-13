@@ -41,26 +41,11 @@
   </script>
   {{/if}}
   <script type="text/javascript">
-  setTimeout(function () {
+  window.addEventListener("unload", logData, false);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://localhost:5050', true);
-
-    //Send the proper header information along with the request
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    xhr.onreadystatechange = function() {//Call a function when the state changes.
-        if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-            // Request finished. Do processing here.
-            console.log('bling!')
-        }
-    }
-    xhr.send(JSON.stringify({ perfobj: performance.timing })); 
-    // xhr.send(new Blob()); 
-    // xhr.send(new Int8Array()); 
-    // xhr.send(document);
-  }, 1000)
-
+  function logData() {
+    navigator.sendBeacon("http://localhost:5050", JSON.stringify({ perfobj: performance.timing }));
+  }
   </script>
 </head>
 <body>
